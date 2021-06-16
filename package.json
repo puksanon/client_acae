@@ -1,6 +1,6 @@
 {
   "name": "@dcae_client/dcae_decoder",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "model image client decoder",
   "main": "src/index.js",
   "scripts": {
