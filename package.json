@@ -1,0 +1,22 @@
+{
+  "name": "dcae_decoder",
+  "version": "1.0.1",
+  "description": "model image client decoder",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "dcae_decoder",
+    "DCAE",
+    "Autoencoder",
+    "Image",
+    "Compression"
+  ],
+  "author": "ENEmy and MuchaZ",
+  "license": "MIT",
+  "dependencies": {
+    "@tensorflow/tfjs": "^3.7.0",
+    "@tensorflow/tfjs-node": "^3.7.0"
+  }
+}
