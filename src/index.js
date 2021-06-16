@@ -5,7 +5,7 @@ const tf = require("@tensorflow/tfjs-node");
 
 const inference = async (latent_vector) => {
   try {
-    const model = await tf.loadLayersModel("file://node_modules/@dcae_decoder/dcae_decoder/src/decoder_model/model.json");
+    const model = await tf.loadLayersModel("file://node_modules/@dcae_client/dcae_decoder/src/decoder_model/model.json");
     let tensor  =  tf.tensor(latent_vector).reshape([1, 2048]);
     let decoded = model.predict(tensor);
     decoded     =  decoded.mul(255).reshape([128, 128, 3]);
