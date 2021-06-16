@@ -1,16 +1,16 @@
 const zlib = require("zlib");
 const fs = require("fs");
 const base64converter = require("./base64_converter");
-// const tf = require("@tensorflow/tfjs-node");
+import { encodePng } from '@tensorflow/tfjs-node'
 const tf = require("@tensorflow/tfjs");
+
 const inference = async (latent_vector) => {
   try {
     const model = await tf.loadLayersModel("https://raw.githubusercontent.com/Untesler/DCAE_Compressor/main/decoder_model/model.json");
     let tensor  =  tf.tensor(latent_vector).reshape([1, 2048]);
     let decoded = model.predict(tensor);
     decoded     =  decoded.mul(255).reshape([128, 128, 3]);
-    // return  tf.node.encodePng(decoded);
-    return decoded.dataSync()
+    return  encodePng(decoded);
   } catch (err) {
     console.error(err.message);
   }
