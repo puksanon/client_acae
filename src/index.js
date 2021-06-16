@@ -29,17 +29,17 @@ const decode = async (compressed_bytes) => {
   }
 };
 
-const decodeImage = (image) => {
+const decodeImage = async (image) => {
   compressed_bytes = fs.readFileSync(image);
   console.log((fs.readFileSync(image)))
     try {
-        compressed_bytes = fs.readFileSync(image);
-        base64 = decode(compressed_bytes);
+        compressed_bytes  = await fs.readFileSync(image);
+        base64 = await decode(compressed_bytes);
         return base64
     } catch (error) {
         console.error(error);
         return error
     }
-  };
+};
 
 module.exports = { decodeImage , decode};
