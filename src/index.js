@@ -5,27 +5,41 @@ const tf = require("@tensorflow/tfjs-node");
 
 const inference = async (latent_vector) => {
   try {
-    const model = await tf.loadLayersModel("file://decoder_model/model.json");
-    let tensor = tf.tensor(latent_vector).reshape([1, 2048]);
+    const model = await tf.loadLayersModel("file://node_modules/@dcae_decoder/dcae_decoder/src/decoder_model/model.json");
+    let tensor  =  tf.tensor(latent_vector).reshape([1, 2048]);
     let decoded = model.predict(tensor);
-    decoded = decoded.mul(255).reshape([128, 128, 3]);
-    return tf.node.encodePng(decoded);
+    decoded     =  decoded.mul(255).reshape([128, 128, 3]);
+    return  tf.node.encodePng(decoded);
   } catch (err) {
     console.error(err.message);
   }
 };
 
-module.exports = async (compressed_bytes) => {
+const decode = async (compressed_bytes) => {
   try {
-      let decompressed = zlib.inflateSync(compressed_bytes);
-      let decompressed_str = decompressed.toString();
-      let decom_latent = decompressed_str.split(" ");
-      decom_latent = decom_latent.map((x) => parseFloat(x));
-      decoded_image = await inference(decom_latent);
-      base64_image = base64converter.bufferToBase64(decoded_image);
-    return base64_image;
+    let decompressed = await zlib.inflateSync(compressed_bytes);
+    let decompressed_str = await decompressed.toString();
+    let decom_latent = await decompressed_str.split(" ");
+    decom_latent = await decom_latent.map((x) => parseFloat(x));
+    decoded_image = await inference(decom_latent);
+    base64_image = await base64converter.bufferToBase64(decoded_image);
+    return await base64_image;
   } catch (err) {
     console.error(err);
   }
 };
 
+const decodeImage = (image) => {
+  compressed_bytes = fs.readFileSync(image);
+  console.log((fs.readFileSync(image)))
+    try {
+        compressed_bytes = fs.readFileSync(image);
+        base64 = decode(compressed_bytes);
+        return base64
+    } catch (error) {
+        console.error(error);
+        return error
+    }
+  };
+
+module.exports = { decodeImage , decode};
