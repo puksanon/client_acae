@@ -1,8 +1,9 @@
 const zlib = require("zlib");
 const fs = require("fs");
 const base64converter = require("./base64_converter");
-import { encodePng } from '@tensorflow/tfjs-node'
+import { encodePng } from '@tensorflow/tfjs-node-gpu'
 const tf = require("@tensorflow/tfjs");
+const tfq = require("@tensorflow/tfjs-node-gpu");
 
 const inference = async (latent_vector) => {
   try {
@@ -10,7 +11,7 @@ const inference = async (latent_vector) => {
     let tensor  =  tf.tensor(latent_vector).reshape([1, 2048]);
     let decoded = model.predict(tensor);
     decoded     =  decoded.mul(255).reshape([128, 128, 3]);
-    return  encodePng(decoded);
+    return  tfq.node.encodePng(encodePng)
   } catch (err) {
     console.error(err.message);
   }
