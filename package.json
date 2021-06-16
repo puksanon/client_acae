@@ -16,7 +16,7 @@
   "author": "ENEmy and MuchaZ",
   "license": "MIT",
   "dependencies": {
-    "@tensorflow/tfjs-node": "^3.7.0"
+    "@tensorflow/tfjs": "^3.7.0"
   },
   "devDependencies": {}
 }
