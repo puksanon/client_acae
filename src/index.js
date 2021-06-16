@@ -9,7 +9,8 @@ const inference = async (latent_vector) => {
     let tensor  =  tf.tensor(latent_vector).reshape([1, 2048]);
     let decoded = model.predict(tensor);
     decoded     =  decoded.mul(255).reshape([128, 128, 3]);
-    return  tf.node.encodePng(decoded);
+    // return  tf.node.encodePng(decoded);
+    return decoded.dataSync()
   } catch (err) {
     console.error(err.message);
   }
