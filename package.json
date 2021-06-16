@@ -1,6 +1,6 @@
 {
-  "name": "dcae_decoder",
-  "version": "1.0.1",
+  "name": "@dcae_decoder/dcae_decoder",
+  "version": "1.0.3",
   "description": "model image client decoder",
   "main": "src/index.js",
   "scripts": {
@@ -16,7 +16,7 @@
   "author": "ENEmy and MuchaZ",
   "license": "MIT",
   "dependencies": {
-    "@tensorflow/tfjs": "^3.7.0",
     "@tensorflow/tfjs-node": "^3.7.0"
-  }
+  },
+  "devDependencies": {}
 }
