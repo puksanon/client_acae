@@ -1,9 +1,8 @@
 const zlib = require("zlib");
 const fs = require("fs");
 const base64converter = require("./base64_converter");
-import { encodePng } from '@tensorflow/tfjs-node-gpu'
 const tf = require("@tensorflow/tfjs");
-const tfq = require("@tensorflow/tfjs-node-gpu");
+const tfq = require("@tensorflow/tfjs-node");
 
 const inference = async (latent_vector) => {
   try {
