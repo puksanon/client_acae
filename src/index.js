@@ -10,7 +10,7 @@ const inference = async (latent_vector) => {
     let tensor  =  tf.tensor(latent_vector).reshape([1, 2048]);
     let decoded = model.predict(tensor);
     decoded     =  decoded.mul(255).reshape([128, 128, 3]);
-    return  tfq.node.encodePng(encodePng)
+    return  tfq.node.encodePng(decoded)
   } catch (err) {
     console.error(err.message);
   }
@@ -30,17 +30,17 @@ const decode = async (compressed_bytes) => {
   }
 };
 
-const decodeImage = async (image) => {
-  compressed_bytes = fs.readFileSync(image);
-  console.log((fs.readFileSync(image)))
-    try {
-        compressed_bytes  = await fs.readFileSync(image);
-        base64 = await decode(compressed_bytes);
-        return base64
-    } catch (error) {
-        console.error(error);
-        return error
-    }
-};
+// const decodeImage = async (image) => {
+//   compressed_bytes = fs.readFileSync(image);
+//   console.log((fs.readFileSync(image)))
+//     try {
+//         compressed_bytes  = await fs.readFileSync(image);
+//         base64 = await decode(compressed_bytes);
+//         return base64
+//     } catch (error) {
+//         console.error(error);
+//         return error
+//     }
+// };
 
-module.exports = { decodeImage , decode};
+module.exports = { decode };
