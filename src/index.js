@@ -30,17 +30,13 @@ const decode = async (compressed_bytes) => {
   }
 };
 
-// const decodeImage = async (image) => {
-//   compressed_bytes = fs.readFileSync(image);
-//   console.log((fs.readFileSync(image)))
-//     try {
-//         compressed_bytes  = await fs.readFileSync(image);
-//         base64 = await decode(compressed_bytes);
-//         return base64
-//     } catch (error) {
-//         console.error(error);
-//         return error
-//     }
-// };
+const converttoBuffer = (ab) => {
+  var buf = Buffer.alloc(ab.byteLength);
+  var view = new Uint8Array(ab);
+  for (var i = 0; i < buf.length; ++i) {
+      buf[i] = view[i];
+  }
+  return buf;
+}
 
-module.exports = { decode };
+module.exports = { decode , converttoBuffer };
